@@ -68,6 +68,7 @@ public class Main {
                         busType = DBusConnection.SESSION;
                     }
                     dBusConn = DBusConnection.getConnection(busType);
+                    // TODO: read these from namespace and fallback to `DbusConfig` values if none provided
                     ts = dBusConn.getRemoteObject(
                             DbusConfig.SIGNAL_BUSNAME, DbusConfig.SIGNAL_OBJECTPATH,
                             Signal.class);
@@ -168,6 +169,8 @@ public class Main {
                 .action(Arguments.version());
         parser.addArgument("--config")
                 .help("Set the path, where to store the config (Default: $XDG_DATA_HOME/signal-cli , $HOME/.local/share/signal-cli).");
+
+        // TODO: parse `--dbus-busname and `--dbus-objectpath` args here
 
         MutuallyExclusiveGroup mut = parser.addMutuallyExclusiveGroup();
         mut.addArgument("-u", "--username")

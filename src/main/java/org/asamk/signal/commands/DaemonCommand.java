@@ -47,6 +47,7 @@ public class DaemonCommand implements LocalCommand {
                     busType = DBusConnection.SESSION;
                 }
                 conn = DBusConnection.getConnection(busType);
+                // TODO: read these from namespace and fallback to `DbusConfig` values if none provided
                 conn.exportObject(SIGNAL_OBJECTPATH, m);
                 conn.requestBusName(SIGNAL_BUSNAME);
             } catch (UnsatisfiedLinkError e) {
